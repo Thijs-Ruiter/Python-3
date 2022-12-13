@@ -1,5 +1,3 @@
-contacten = {}
-
 def start_message():
     print("\n"
           "Hallo, dit is uw contactlijst.\n"
@@ -9,10 +7,10 @@ def start_message():
           "Typ 4 om een contact te verwijderen\n"
           "Typ 5 om dit programma te sluiten\n")
 
-def contact_view():
+def contact_view(contacten):
     print(contacten)
 
-def contact_add():
+def contact_add(contacten):
     name = str(input("Naam van contact: "))
     phone_number = input("Telefoonnummer van contact: ")
     if name in contacten:
@@ -20,7 +18,7 @@ def contact_add():
     else:
         contacten[name] = phone_number
 
-def contact_edit():
+def contact_edit(contacten):
     selected_contact = str(input("Wat is de naam van het contact dat je wilt editen? "))
     if selected_contact not in contacten:
         print("\n""Dit contact bestaat niet")
@@ -33,7 +31,7 @@ def contact_edit():
         else:
             contacten[name] = phone_number
 
-def contact_remove():
+def contact_remove(contacten):
     selected_contact = str(input("Wat is de naam van het contact dat je wilt verwijderen? "))
     if selected_contact not in contacten:
         print("\n""Dit contact bestaat niet")
@@ -45,19 +43,18 @@ def select():
     return selected
 
 def program():
-    running = True
-    while (running):
+    contacten = {}
+    selected = 0
+    while selected != 5:
         start_message()
         selected = select()
         if (selected == 1):
-            contact_view()
+            contact_view(contacten)
         elif (selected == 2):
-            contact_add()
+            contact_add(contacten)
         elif (selected == 3):
-            contact_edit()
+            contact_edit(contacten)
         elif (selected == 4):
-            contact_remove()
-        elif (selected == 5):
-            running = False
+            contact_remove(contacten)
 
 program()
